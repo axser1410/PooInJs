@@ -49,12 +49,15 @@
         </div>
         <div id="acciones">
             <p>elija la variable en la que quiere crear el objeto</p>
-            <input type="text" id="textoPrin" placeholder="crear objeto">
+            <input type="text" id="textoPrin" placeholder="nombre del objeto a crear">
             <button id="objEvaluacionProyecto" onclick="creaObjEvaluacion()">CrearObjetoEvaluacion</button>
+            <button id="objEvaluacionProyecto" onclick="creaObjEvaluacionDefecto()">CrearObjetoEvaluacionDefecto</button>
             <button id="objFeriaAcademica" onclick="creaObjFeria()">CrearObjetoFeria</button>
+            <button id="objFeriaAcademica" onclick="creaObjFeriaDefecto()">CrearObjetoFeriaDefecto</button>
         </div>
         <div id="segundo">
-            <span id="span1">Ingrese los atributos</span>
+            <input type="text" id="nombreBuscar" placeholder="nombre del objeto">
+            <button id="mostrar" onclick="func1()"></button>
         </div>
     
     </section>

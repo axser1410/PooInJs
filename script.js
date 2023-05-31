@@ -8,12 +8,13 @@ const btnObjEvaluacion = document.getElementById("objEvaluacionProyecto")
 const btnObjFeria = document.getElementById("objFeriaAcademica")
 const span1 = document.getElementById("span1")
 const arregloEvaluacion = ["ingrese el nombre del proyecto", "ingrese la materia", "ingrese el puntaje", "integrante 1", "integrante 2", "integrante 3"]
-const arregloFeria = []
-let objetosFeria = []
+const arregloFeria = ["ingrese el nombre del proyecto", "ingrese el nombre de la universidad"]
 let objetosEvaluacion = []
+let objetosFeria = []
 
 class EvaluacionProyectosObj { // Definición de la clase 'Persona'
-    constructor(carrera, universidad) { // Constructor
+    constructor(carrera, universidad, titulo) { // Constructor
+        this.titulo = titulo;
         this.carrera = carrera;
         this.universidad = universidad;
         this.np = 0;
@@ -23,7 +24,7 @@ class EvaluacionProyectosObj { // Definición de la clase 'Persona'
         this.i = [];
         this.filasI = 3
     }
-  
+ 
     ingresarintegrante1(integrante1) { // Método de instancia
         this.ni[1][this.ni] = integrante1
     }
@@ -35,13 +36,14 @@ class EvaluacionProyectosObj { // Definición de la clase 'Persona'
     }
 }
 class FeriaAcademica {
-    constructor(nombre, lugar, fecha) {
+    constructor(nombre, lugar, fecha, titulo) {
+        this.titulo = titulo
         this.nombre = nombre;
         this.lugar = lugar;
         this.fecha = fecha;
         this.ne = 0;
-        this.e = [[]];
-        this.filasE = 3;
+        this.e = [];
+        this.filasE = 2;
         
     }
   
@@ -54,65 +56,154 @@ class FeriaAcademica {
     }
     
 }
-function creaObjEvaluacion(){
-    let auxnp = 0
-    let a = prompt("ingrese su carrera")
-    let b = prompt("ingrese su universidad")
-    let objetoCrear = new EvaluacionProyectosObj(a,b);
-    console.log(objetoCrear);
-    this.np = 0
-    console.log(this.np);
-    let resp = prompt("desea agregar algun proyecto?   (si/no)")
-    while (resp === "si") {
-        let proyecto = []
-        let integrantes = []
-        auxnp = auxnp + 1
-        this.np = auxnp
-        console.log(this.np, auxnp);
-        //console.log("funciona hasta1");
-        for (let i = this.np-1; i < this.np; i++) {
-            //console.log("funciona hasta2");
-            for (let j = 0; j < arregloEvaluacion.length/2; j++) {
-                //console.log("funciona hasta3");
-                let valor= prompt(arregloEvaluacion[j])
-                //console.log("funciona hasta4");
-                //console.log(valor);
-                proyecto.push(valor)
-                //console.log("funciona hasta5");
-                console.log(proyecto);
-                
-            }
-            for (let m = arregloEvaluacion.length/2; m < arregloEvaluacion.length; m++) {
-                //console.log("ingresa a 2");
-                let valor2 = prompt(arregloEvaluacion[m])
-                integrantes.push(valor2)
-                console.log(integrantes);
-                //console.log("funciona hasta6");
 
-            }
-        }
-        objetoCrear.p.push(proyecto)
-        objetoCrear.i.push(integrantes)
-        resp = prompt("desea seguir agregando?   si  o  no")
+function creaObjEvaluacionDefecto() {
+    if(primera() === true) {
+        let entrada = document.getElementById("textoPrin")
+        let entre = entrada.value
+        let a = "Informatica"
+        let b = "Universidad Mayor de San Andres"
+        let objetoCrear = new EvaluacionProyectosObj(a, b, entre);
+        this.np = 1
+        objetoCrear.p[0] = ["Ia", "INFORMATICA", "76"]
+        objetoCrear.i[0] = ["Alexandre", "Karen", "Victor"]
+    
+        //let objetoCrear = entrada.value;
+        objetosEvaluacion.push(objetoCrear)
+        console.log(objetosEvaluacion); 
+        entrada.value = ""
     }
-    const entrada = document.getElementById("textoPrin")// error al declarar la variable "const entrada" fuera de todo(al inicio)
-    //let objetoCrear = entrada.value;
-    objetosEvaluacion.push(objetoCrear)
-    console.log(objetosEvaluacion); 
-    entrada.value = ""
+    else{
+        alert("ingrese un nombre de la variable para crear el objeto")
+
+    }
+}
+function creaObjFeriaDefecto() {
+    if(primera() === true) {
+        let entrada = document.getElementById("textoPrin")
+        let entre = entrada.value
+        let a = "Alexandre";
+        let b = "Monoblock";
+        let c = "12/12/12";
+        let objetoCrear = new FeriaAcademica(a, b, c, entre);
+        this.np = 1
+        objetoCrear.e[0] = ["Inteligencia Artificial", "Umsa"]
+    
+        //let objetoCrear = entrada.value;
+        objetosEvaluacion.push(objetoCrear)
+        console.log(objetosEvaluacion); 
+        entrada.value = ""
+    }
+    else{
+        alert("ingrese un nombre de la variable para crear el objeto")
+    }
+}
+
+function creaObjEvaluacion(){
+    if(primera() === true){
+        let entrada = document.getElementById("textoPrin")// error al declarar la variable "const entrada" fuera de todo(al inicio)
+        let entre = entrada.value
+        let auxnp = 0
+        let a = prompt("ingrese su carrera")
+        let b = prompt("ingrese su universidad")
+        let objetoCrear = new EvaluacionProyectosObj(a, b, entre);
+        //console.log(objetoCrear);
+        this.np = 0
+        //console.log(this.np);
+        let resp = prompt("desea agregar algun proyecto?   (si/no)")
+        while (resp === "si") {
+            let proyecto = []
+            let integrantes = []
+            auxnp = auxnp + 1
+            this.np = auxnp
+            //console.log(this.np, auxnp);
+            //console.log("funciona hasta1");
+            for (let i = this.np-1; i < this.np; i++) {
+                //console.log("funciona hasta2");
+                for (let j = 0; j < arregloEvaluacion.length/2; j++) {
+                    //console.log("funciona hasta3");
+                    let valor= prompt(arregloEvaluacion[j])
+                    //console.log("funciona hasta4");
+                    //console.log(valor);
+                    proyecto.push(valor)
+                    //console.log("funciona hasta5");
+                    console.log(proyecto);
+                    
+                }
+                for (let m = arregloEvaluacion.length/2; m < arregloEvaluacion.length; m++) {
+                    //console.log("ingresa a 2");
+                    let valor2 = prompt(arregloEvaluacion[m])
+                    integrantes.push(valor2)
+                    console.log(integrantes);
+                    //console.log("funciona hasta6");
+    
+                }
+            }
+            objetoCrear.p.push(proyecto)
+            objetoCrear.i.push(integrantes)
+            resp = prompt("desea seguir agregando?   si  o  no")
+        }
+        //let objetoCrear = entrada.value;
+        objetosEvaluacion.push(objetoCrear)
+        console.log(objetosEvaluacion); 
+        entrada.value = ""
+    }
+    else{
+        alert("ingrese un nombre de la variable para crear el objeto")
+    }
 }
 function creaObjFeria() {
-    const entrada = document.getElementById("textoPrin")
-    //let objetoCrear = entrada.value
-    objetosFeria.push(objetoCrear)
-    console.log(objetosFeria);
+    if (primera() === true) {
+        let entrada = document.getElementById("textoPrin")
+        let entre = entrada.value
+        let auxnp = 0
+        let a = prompt("ingrese su nombre")
+        let b = prompt("ingrese el lugar")
+        let c = prompt("ingrese la fecha")
+        let objetoCrear = new FeriaAcademica(a, b, c, entre)
+        resp = prompt("desea agregar algun proyecto?   (si/no)")
+        while(resp === "si"){
+            console.log("si entra");
+            let entradas = []
+            auxnp = auxnp + 1
+            this.ne = auxnp
+            console.log(this.ne, auxnp);
+            for (let i = this.ne-1; i < this.ne; i++) {
+                for (let j = 0; j < arregloFeria.length; j++) {
+                    let valor3 = prompt(arregloFeria[j])
+                    entradas.push(valor3)
+                }
+                
+            }
+            objetoCrear.e.push(entradas)
+            resp = prompt("desea seguir agregando?   (si/no)")
 
-    entrada.value = ""
+        }
+        //let objetoCrear = entrada.value
+        objetosFeria.push(objetoCrear)
+        console.log(objetosFeria);
+
+        entrada.value = ""
+    }
+    else{
+        alert("ingrese un nombre de la variable para crear el objeto")
+
+    }
 }
 
 
 function revision() {
     console.log("juego cargado");
+}
+
+function primera(){
+    let entrada = document.getElementById("textoPrin")
+    if(entrada.value === ""){
+        return false;
+    }
+    else{
+        return true;
+    }
 }
 
 window.addEventListener("load", revision)
