@@ -16,11 +16,11 @@ class EvaluacionProyectosObj { // Definición de la clase 'Persona'
     constructor(carrera, universidad) { // Constructor
         this.carrera = carrera;
         this.universidad = universidad;
-        this.npc = 0;
-        this.p = [[0]*3];
+        this.np = 0;
+        this.p = [];
         this.filasP = 3;
-        this.nic = 0;
-        this.i = [[0]*3];
+        this.ni = 0;
+        this.i = [];
         this.filasI = 3
     }
   
@@ -47,31 +47,52 @@ class FeriaAcademica {
   
     // Método de instancia
     agregarNombreProyecto(nombreProyecto) {
-        this.nic[1][this.ne] = nombreProyecto
+        this.ni[1][this.ne] = nombreProyecto
     }
     agregarUniversidad(universidad) {
-        this.nic[2][this.ne] = universidad
+        this.ni[2][this.ne] = universidad
     }
     
 }
 function creaObjEvaluacion(){
+    let auxnp = 0
     let a = prompt("ingrese su carrera")
     let b = prompt("ingrese su universidad")
     let objetoCrear = new EvaluacionProyectosObj(a,b);
     console.log(objetoCrear);
+    this.np = 0
+    console.log(this.np);
     let resp = prompt("desea agregar algun proyecto?   (si/no)")
-    while (resp != "no") {
-        this.npc = this.npc + 1
-        this.p[this.npc] = []
-        console.log("funciona hasta1");
-        for (let i = 0; i < 6; i++) {
-            console.log("funciona hasta2");
-            for (let j = 0; j < arregloEvaluacion.length; j++) {
-                console.log("funciona hasta3");
-                this.p[j][i] = prompt(arregloEvaluacion[j])
-                console.log("funciona hasta4");
+    while (resp === "si") {
+        let proyecto = []
+        let integrantes = []
+        auxnp = auxnp + 1
+        this.np = auxnp
+        console.log(this.np, auxnp);
+        //console.log("funciona hasta1");
+        for (let i = this.np-1; i < this.np; i++) {
+            //console.log("funciona hasta2");
+            for (let j = 0; j < arregloEvaluacion.length/2; j++) {
+                //console.log("funciona hasta3");
+                let valor= prompt(arregloEvaluacion[j])
+                //console.log("funciona hasta4");
+                //console.log(valor);
+                proyecto.push(valor)
+                //console.log("funciona hasta5");
+                console.log(proyecto);
+                
+            }
+            for (let m = arregloEvaluacion.length/2; m < arregloEvaluacion.length; m++) {
+                //console.log("ingresa a 2");
+                let valor2 = prompt(arregloEvaluacion[m])
+                integrantes.push(valor2)
+                console.log(integrantes);
+                //console.log("funciona hasta6");
+
             }
         }
+        objetoCrear.p.push(proyecto)
+        objetoCrear.i.push(integrantes)
         resp = prompt("desea seguir agregando?   si  o  no")
     }
     const entrada = document.getElementById("textoPrin")// error al declarar la variable "const entrada" fuera de todo(al inicio)
@@ -88,6 +109,7 @@ function creaObjFeria() {
 
     entrada.value = ""
 }
+
 
 function revision() {
     console.log("juego cargado");
