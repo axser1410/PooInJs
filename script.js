@@ -34,6 +34,17 @@ class EvaluacionProyectosObj { // Definición de la clase 'Persona'
     ingresarintegrante3(integrante3) { // Método de instancia
         this.ni[3][this.ni] = integrante3
     }
+    mostrar(){
+        console.log(this.carrera, this.universidad, this.titulo);
+        for (let i = 0; i < this.np; i++) {
+            console.log(this.p[i][1]);
+            console.log(this.p[i][2]);
+            console.log(this.p[i][3]);
+            console.log(this.i[i][1]);
+            console.log(this.i[i][2]);
+            console.log(this.i[i][3]);  
+        }
+    }
 }
 class FeriaAcademica {
     constructor(nombre, lugar, fecha, titulo) {
@@ -58,8 +69,7 @@ class FeriaAcademica {
 }
 
 function creaObjEvaluacionDefecto() {
-    if(primera() === true) {
-        let entrada = document.getElementById("textoPrin")
+    if(revisionCampoVacio() === true && revisionVariableCreada()=== true){        let entrada = document.getElementById("textoPrin")
         let entre = entrada.value
         let a = "Informatica"
         let b = "Universidad Mayor de San Andres"
@@ -74,13 +84,12 @@ function creaObjEvaluacionDefecto() {
         entrada.value = ""
     }
     else{
-        alert("ingrese un nombre de la variable para crear el objeto")
+        alert("ingrese un nombre de la variable para crear el objeto o cambie el nombre de la variable")
 
     }
 }
 function creaObjFeriaDefecto() {
-    if(primera() === true) {
-        let entrada = document.getElementById("textoPrin")
+    if(revisionCampoVacio() === true && revisionVariableCreada()=== true){        let entrada = document.getElementById("textoPrin")
         let entre = entrada.value
         let a = "Alexandre";
         let b = "Monoblock";
@@ -95,12 +104,12 @@ function creaObjFeriaDefecto() {
         entrada.value = ""
     }
     else{
-        alert("ingrese un nombre de la variable para crear el objeto")
+        alert("ingrese un nombre de la variable para crear el objeto o cambie el nombre de la variable")
     }
 }
 
 function creaObjEvaluacion(){
-    if(primera() === true){
+    if(revisionCampoVacio() === true && revisionVariableCreada()=== true){
         let entrada = document.getElementById("textoPrin")// error al declarar la variable "const entrada" fuera de todo(al inicio)
         let entre = entrada.value
         let auxnp = 0
@@ -149,12 +158,11 @@ function creaObjEvaluacion(){
         entrada.value = ""
     }
     else{
-        alert("ingrese un nombre de la variable para crear el objeto")
+        alert("ingrese un nombre de la variable para crear el objeto o cambie el nombre de la variable")
     }
 }
 function creaObjFeria() {
-    if (primera() === true) {
-        let entrada = document.getElementById("textoPrin")
+    if(revisionCampoVacio() === true && revisionVariableCreada()=== true){        let entrada = document.getElementById("textoPrin")
         let entre = entrada.value
         let auxnp = 0
         let a = prompt("ingrese su nombre")
@@ -186,7 +194,7 @@ function creaObjFeria() {
         entrada.value = ""
     }
     else{
-        alert("ingrese un nombre de la variable para crear el objeto")
+        alert("ingrese un nombre de la variable para crear el objeto o cambie el nombre de la variable")
 
     }
 }
@@ -196,7 +204,7 @@ function revision() {
     console.log("juego cargado");
 }
 
-function primera(){
+function revisionCampoVacio(){
     let entrada = document.getElementById("textoPrin")
     if(entrada.value === ""){
         return false;
@@ -205,5 +213,21 @@ function primera(){
         return true;
     }
 }
+
+function revisionVariableCreada() {
+    let sw = 0
+    let entrada = document.getElementById("textoPrin")
+    for (let i = 0; i < objetosEvaluacion.length; i++) {
+        if(entrada.value ===objetosEvaluacion[i].titulo){
+            sw =+ 1
+        }    
+    }
+    if (sw === 0) {
+        return true
+    }else{
+        return false
+    }
+}
+
 
 window.addEventListener("load", revision)
