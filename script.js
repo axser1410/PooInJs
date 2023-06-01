@@ -11,10 +11,11 @@ const arregloEvaluacion = ["ingrese el nombre del proyecto", "ingrese la materia
 const arregloFeria = ["ingrese el nombre del proyecto", "ingrese el nombre de la universidad"]
 let objetosEvaluacion = []
 let objetosFeria = []
+let objetosGeneral = []
 
 class EvaluacionProyectosObj { // Definición de la clase 'Persona'
-    constructor(carrera, universidad, titulo) { // Constructor
-        this.titulo = titulo;
+    constructor(carrera, universidad, nombreObjeto) { // Constructor
+        this.nombreObjeto = nombreObjeto;
         this.carrera = carrera;
         this.universidad = universidad;
         this.np = 0;
@@ -35,20 +36,20 @@ class EvaluacionProyectosObj { // Definición de la clase 'Persona'
         this.ni[3][this.ni] = integrante3
     }
     mostrar(){
-        console.log(this.carrera, this.universidad, this.titulo);
+        console.log(this.carrera, this.universidad, this.nombreObjeto);
         for (let i = 0; i < this.np; i++) {
+            console.log(this.p[i][0]);
             console.log(this.p[i][1]);
             console.log(this.p[i][2]);
-            console.log(this.p[i][3]);
+            console.log(this.i[i][0]);
             console.log(this.i[i][1]);
-            console.log(this.i[i][2]);
-            console.log(this.i[i][3]);  
+            console.log(this.i[i][2]);  
         }
     }
 }
 class FeriaAcademica {
-    constructor(nombre, lugar, fecha, titulo) {
-        this.titulo = titulo
+    constructor(nombre, lugar, fecha, nombreObjeto) {
+        this.nombreObjeto = nombreObjeto
         this.nombre = nombre;
         this.lugar = lugar;
         this.fecha = fecha;
@@ -57,15 +58,21 @@ class FeriaAcademica {
         this.filasE = 2;
         
     }
-  
-    // Método de instancia
-    agregarNombreProyecto(nombreProyecto) {
+
+    agregarNombreProyecto(nombreProyecto) {    // Método de instancia
         this.ni[1][this.ne] = nombreProyecto
     }
     agregarUniversidad(universidad) {
         this.ni[2][this.ne] = universidad
     }
     
+    mostrar(){
+        console.log(this.nombre, this.lugar, this.fecha, this.nombreObjeto);
+        for (let i = 0; i < this.np; i++) {
+            console.log(this.e[i][0]);
+            console.log(this.p[i][1]); 
+        }
+    }
 }
 
 function creaObjEvaluacionDefecto() {
@@ -77,9 +84,9 @@ function creaObjEvaluacionDefecto() {
         this.np = 1
         objetoCrear.p[0] = ["Ia", "INFORMATICA", "76"]
         objetoCrear.i[0] = ["Alexandre", "Karen", "Victor"]
-    
         //let objetoCrear = entrada.value;
         objetosEvaluacion.push(objetoCrear)
+        objetosGeneral.push(objetoCrear)
         console.log(objetosEvaluacion); 
         entrada.value = ""
     }
@@ -89,7 +96,8 @@ function creaObjEvaluacionDefecto() {
     }
 }
 function creaObjFeriaDefecto() {
-    if(revisionCampoVacio() === true && revisionVariableCreada()=== true){        let entrada = document.getElementById("textoPrin")
+    if(revisionCampoVacio() === true && revisionVariableCreada()=== true){
+        let entrada = document.getElementById("textoPrin")
         let entre = entrada.value
         let a = "Alexandre";
         let b = "Monoblock";
@@ -97,9 +105,9 @@ function creaObjFeriaDefecto() {
         let objetoCrear = new FeriaAcademica(a, b, c, entre);
         this.np = 1
         objetoCrear.e[0] = ["Inteligencia Artificial", "Umsa"]
-    
         //let objetoCrear = entrada.value;
         objetosEvaluacion.push(objetoCrear)
+        objetosGeneral.push(objetoCrear)
         console.log(objetosEvaluacion); 
         entrada.value = ""
     }
@@ -137,7 +145,6 @@ function creaObjEvaluacion(){
                     proyecto.push(valor)
                     //console.log("funciona hasta5");
                     console.log(proyecto);
-                    
                 }
                 for (let m = arregloEvaluacion.length/2; m < arregloEvaluacion.length; m++) {
                     //console.log("ingresa a 2");
@@ -145,7 +152,6 @@ function creaObjEvaluacion(){
                     integrantes.push(valor2)
                     console.log(integrantes);
                     //console.log("funciona hasta6");
-    
                 }
             }
             objetoCrear.p.push(proyecto)
@@ -154,6 +160,7 @@ function creaObjEvaluacion(){
         }
         //let objetoCrear = entrada.value;
         objetosEvaluacion.push(objetoCrear)
+        objetosGeneral.push(objetoCrear)
         console.log(objetosEvaluacion); 
         entrada.value = ""
     }
@@ -175,13 +182,12 @@ function creaObjFeria() {
             let entradas = []
             auxnp = auxnp + 1
             this.ne = auxnp
-            console.log(this.ne, auxnp);
+            //console.log(this.ne, auxnp);
             for (let i = this.ne-1; i < this.ne; i++) {
                 for (let j = 0; j < arregloFeria.length; j++) {
                     let valor3 = prompt(arregloFeria[j])
                     entradas.push(valor3)
                 }
-                
             }
             objetoCrear.e.push(entradas)
             resp = prompt("desea seguir agregando?   (si/no)")
@@ -189,8 +195,8 @@ function creaObjFeria() {
         }
         //let objetoCrear = entrada.value
         objetosFeria.push(objetoCrear)
+        objetosGeneral.push(objetoCrear)
         console.log(objetosFeria);
-
         entrada.value = ""
     }
     else{
@@ -218,7 +224,7 @@ function revisionVariableCreada() {
     let sw = 0
     let entrada = document.getElementById("textoPrin")
     for (let i = 0; i < objetosEvaluacion.length; i++) {
-        if(entrada.value ===objetosEvaluacion[i].titulo){
+        if(entrada.value ===objetosEvaluacion[i].nombreObjeto){
             sw =+ 1
         }    
     }
@@ -229,5 +235,32 @@ function revisionVariableCreada() {
     }
 }
 
+
+function func1(){
+    let entrada = document.getElementById("nombreBuscar")
+    let valor = entrada.value
+    let sw = 0
+    for (let i = 0; i < objetosEvaluacion.length; i++) {
+        if(valor === objetosEvaluacion[i].nombreObjeto){
+            objetosEvaluacion[i].mostrar()
+            sw = 1
+            console.log("esta en ObjetosEvaluacion");
+        }
+    }
+    for (let i = 0; i < objetosFeria.length; i++) {
+        if(valor === objetosFeria[i].nombreObjeto){
+            objetosEvaluacion[i].mostrar()
+            sw = 1
+            console.log("esta en objetosFeria");
+        }
+    }
+    if (sw === 0) {
+        console.log("no esta en ningun arreglo");
+    }
+}
+
+//function func2() {
+   // let menorPuntaje = objetosEvaluacion[0].conseguirPuntaje()
+//}
 
 window.addEventListener("load", revision)
