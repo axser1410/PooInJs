@@ -1,11 +1,73 @@
 h1{
-    text-align: center;
-  }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(90deg, rgba(24, 24, 82, 0.473), rgba(88, 88, 161, 0.432), rgba(137, 171, 235, 0.527));
+    color: rgba(160, 160, 160, 0.781);
+    box-shadow: inset 0px 0px 5px rgba(24, 24, 82, 0.473);
+    border-radius: 10px;
+    border: 2px solid black;
+    padding: 10px;
+    
+}
+
 td th{
     border: 5px solid black;
     background-color: yellow;
 }
 #visual{
-    border: 0px solid black;
+    display: inline-block;
+    border: 3px solid rgba(0, 0, 0, 0.37);
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+    background: linear-gradient(90deg, rgba(24, 24, 82, 0.452), rgba(88, 88, 161, 0.452), rgba(137, 171, 235, 0.432));
+
+}
+#uno{
+    padding: 5px;
+    margin: 5px;
+    border: 3px solid rgba(0, 0, 0, 0.425);
+    border-radius: 5px;
     
 }
+
+
+#pantalla{
+    padding: 5px;
+    margin: 5px;
+    border: 3px solid rgba(0, 0, 0, 0.39);
+    border-radius: 5px;
+}
+#pantallaObjeto{
+    padding: 5px;
+    margin: 5px;
+    border: 3px solid rgba(0, 0, 0, 0.363);
+    border-radius: 5px;
+}
+
+body{
+    background-image: url("./assets/esapacio.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+}
+
+.fondo{
+    background: linear-gradient(90deg, rgba(24, 24, 82, 0.473), rgba(88, 88, 161, 0.432), rgba(137, 171, 235, 0.527));
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    border: 3px solid rgba(0, 0, 0, 0.363);
+    
+    box-shadow: 7px 6px 5px rgba(0, 0, 0, 0.815);
+}
+/*
+codigo reemplazado:
+
+background: linear-gradient(90deg, rgba(129, 128, 128, 0.651),rgba(212, 211, 211, 0.555),rgba(206, 206, 206, 0.158));
+    */

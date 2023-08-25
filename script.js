@@ -9,9 +9,13 @@ const btnObjFeria = document.getElementById("objFeriaAcademica")
 const span1 = document.getElementById("span1")
 const arregloEvaluacion = ["ingrese el nombre del proyecto", "ingrese la materia", "ingrese el puntaje", "integrante 1", "integrante 2", "integrante 3"]
 const arregloFeria = ["ingrese el nombre del proyecto", "ingrese el nombre de la universidad"]
+const dos = document.getElementById("dos")
+const tres = document.getElementById("tres")
+const pantallaObjeto = document.getElementById("pantallaObjeto")
 let objetosEvaluacion = []
 let objetosFeria = []
 let objetosGeneral = []
+let nombresObjetos = []
 
 class EvaluacionProyectosObj { // Definición de la clase 'Persona'
     constructor(carrera, universidad, nombreObjeto) { // Constructor
@@ -38,12 +42,40 @@ class EvaluacionProyectosObj { // Definición de la clase 'Persona'
         }
     }
 
+    mostrarPantalla(){
+        pantallaObjeto.style.display = "block"
+        console.log("ingresa");
+        tres.style.display = "block";
+        let mostrar = ""
+        mostrar += `
+            <p>${this.carrera}</p>
+            <p>${this.universidad}</p>`
+            for (let i = 0; i < this.np; i++) {
+                mostrar += `
+                <p> Nombre del Proyecto: ${this.p[i][0]}</p>     
+                <p>Materia: ${this.p[i][1]}</p>    
+                <p>Puntaje: ${this.p[i][2]}</p>   
+                <p>Integrante1: ${this.p[i][0]}</p>     
+                <p>Integrante2: ${this.p[i][1]}</p>     
+                <p>Integrante3: ${this.p[i][2]}</p>`     //nombreproyecto}</p>
+                
+      //materia
+      //puntaje
+         
+            }
+        tres.innerHTML= mostrar
+        }
+
     conseguirMenorPuntaje(){
+        console.log("entra a 1");
         let puntaje = parseInt(this.p[0][2])
+        console.log(puntaje);
         for (let i = 0; i < this.np; i++) {
             if (parseInt(this.p[i][2]) <= puntaje) {
                 puntaje = parseInt(this.p[i][2]);
             }
+        console.log("el puntaje es");
+        console.log(puntaje);
         }
         for (let i = 0; i < this.np; i++) {
             if (parseInt(this.p[i][2]) === puntaje) {
@@ -104,6 +136,7 @@ function creaObjEvaluacionDefecto() {
         //let objetoCrear = entrada.value;
         objetosEvaluacion.push(objetoCrear)
         objetosGeneral.push(objetoCrear)
+        nombresObjetos.push(entre)
         console.log(objetosEvaluacion); 
         entrada.value = ""
     }
@@ -111,6 +144,7 @@ function creaObjEvaluacionDefecto() {
         alert("ingrese un nombre de la variable para crear el objeto o cambie el nombre de la variable")
 
     }
+    actualizarLista() 
 }
 function creaObjFeriaDefecto() {
     if(revisionCampoVacio() === true && revisionVariableCreada()=== true){
@@ -126,12 +160,14 @@ function creaObjFeriaDefecto() {
         //let objetoCrear = entrada.value;
         objetosEvaluacion.push(objetoCrear)
         objetosGeneral.push(objetoCrear)
+        nombresObjetos.push(entre)
         console.log(objetosEvaluacion); 
         entrada.value = ""
     }
     else{
         alert("ingrese un nombre de la variable para crear el objeto o cambie el nombre de la variable")
     }
+    actualizarLista() 
 }
 
 function creaObjEvaluacion(){
@@ -180,6 +216,7 @@ function creaObjEvaluacion(){
         //let objetoCrear = entrada.value;
         objetosEvaluacion.push(objetoCrear)
         objetosGeneral.push(objetoCrear)
+        nombresObjetos.push(entre)
         console.log(objetosEvaluacion); 
         entrada.value = ""
         
@@ -187,6 +224,7 @@ function creaObjEvaluacion(){
     else{
         alert("ingrese un nombre de la variable para crear el objeto o cambie el nombre de la variable")
     }
+    actualizarLista() 
 }
 function creaObjFeria() {
     if(revisionCampoVacio() === true && revisionVariableCreada()=== true){        let entrada = document.getElementById("textoPrin")
@@ -216,6 +254,7 @@ function creaObjFeria() {
         objetoCrear.ne = auxnp
         objetosFeria.push(objetoCrear)
         objetosGeneral.push(objetoCrear)
+        nombresObjetos.push(entre)
         console.log(objetosFeria);
         entrada.value = ""
     }
@@ -223,6 +262,7 @@ function creaObjFeria() {
         alert("ingrese un nombre de la variable para crear el objeto o cambie el nombre de la variable")
 
     }
+    actualizarLista() 
 }
 
 
@@ -265,6 +305,7 @@ function func1(){
             objetosEvaluacion[i].mostrar()
             sw = 1
             console.log("esta en ObjetosEvaluacion");
+            objetosEvaluacion[i].mostrarPantalla()
         }
     }
     for (let i = 0; i < objetosFeria.length; i++) {
@@ -272,11 +313,14 @@ function func1(){
             objetosEvaluacion[i].mostrar()
             sw = 1
             console.log("esta en objetosFeria");
+            objetosEvaluacion[i].mostrarPantalla()
+
         }
     }
     if (sw === 0) {
         console.log("no esta en ningun arreglo");
     }
+    entrada.value = ""
 }
 
 function func2() {
@@ -284,9 +328,22 @@ function func2() {
     let valor = entrada.value
     for (let i = 0; i < objetosEvaluacion.length; i++) { //recorre objetos
         if (valor === objetosEvaluacion[i].nombreObjeto) {
+            console.log("el equipo esta en "+ i)
             objetosEvaluacion[i].conseguirMenorPuntaje()
         }
     }
+    entrada.value= ""
+}
+
+function actualizarLista() {
+    dos.style.display = "block";
+    let muestraListas = ""
+    objetosGeneral.forEach((objeto) => {
+        muestraListas += `
+        <p>${objeto.nombreObjeto}</p>
+        `        
+    dos.innerHTML = muestraListas
+    });
 }
 
 window.addEventListener("load", revision)
